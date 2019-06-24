@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>
+        Index
+    </title>
+    <body>
+<h1>  </h1>
+<div th:switch="${users}">
+    <div th:case="null">
+        <button onclick="window.location.href = '/register';">Register</button>
+        <button onclick="window.location.href = '/signin';">Log in</button>
+    </div>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Address</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.address}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</head>
+</html>
