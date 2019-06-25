@@ -1,17 +1,20 @@
 package com.example.ShdlMeet.entity;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "Meetings")
-public class Meetings {
+@Document(collection = "Meeting")
+public class Meeting {
 
-    private ObjectId _id;
     private Integer hostId;
     private Timing timing;
-    List<Integer> members;
+    List<ObjectId> members;
+
+    @Id
+    ObjectId _id;
 
     public Integer getHostId() {
         return hostId;
@@ -29,11 +32,19 @@ public class Meetings {
         this.timing = timing;
     }
 
-    public List<Integer> getMembers() {
+    public List<ObjectId> getMembers() {
         return members;
     }
 
-    public void setMembers(List<Integer> members) {
+    public void setMembers(List<ObjectId> members) {
         this.members = members;
+    }
+
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
     }
 }

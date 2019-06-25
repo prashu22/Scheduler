@@ -1,10 +1,9 @@
 package com.example.ShdlMeet.entity;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
@@ -19,13 +18,14 @@ public class Users {
 
     @NotBlank(message = "Email is Mandatory")
     private String email;
+
     private String address;
     private Integer phone;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer eID;
-    private List<Timing> timings;
+    ObjectId _id;
+
+    private List<ObjectId> meetings;
 
     public String getName() {
         return name;
@@ -67,19 +67,19 @@ public class Users {
         this.phone = phone;
     }
 
-    public Integer geteID() {
-        return eID;
+    public ObjectId get_id() {
+        return _id;
     }
 
-    public void seteID(Integer eID) {
-        this.eID = eID;
+    public void set_id(ObjectId _id) {
+        this._id = _id;
     }
 
-    public List<Timing> getTimings() {
-        return timings;
+    public List<ObjectId> getMeetings() {
+        return meetings;
     }
 
-    public void setTimings(List<Timing> timings) {
-        this.timings = timings;
+    public void setMeetings(List<ObjectId> meeting) {
+        this.meetings = meeting;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.ShdlMeet.entity;
 
+import org.bson.types.ObjectId;
+
 import java.util.Date;
 
 public class Timing {
@@ -26,4 +28,6 @@ public class Timing {
     public void setEdDate(Date edDate) {
         this.edDate = edDate;
     }
+
+
 }

@@ -2,7 +2,7 @@ package com.example.ShdlMeet.service;
 
 import com.example.ShdlMeet.Repo.MeetingRepo;
 import com.example.ShdlMeet.Repo.UserInfoRepo;
-import com.example.ShdlMeet.entity.Meetings;
+import com.example.ShdlMeet.entity.Meeting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class MeetingService {
     @Autowired
     UserInfoRepo userInfoRepo;
 
-    public void setMeeting(Meetings meeting)
+    public void setMeeting(Meeting meeting)
     {
 
         meetingRepo.save(meeting);

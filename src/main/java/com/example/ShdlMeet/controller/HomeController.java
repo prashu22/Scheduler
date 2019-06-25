@@ -22,6 +22,8 @@ public class HomeController {
     public String signup(Users users) {
         return "register";
     }
+
+
     @PostMapping("/register")
     public String addUser(@Valid Users user, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -31,10 +33,15 @@ public class HomeController {
         model.addAttribute("users",user);
         return "index.html";
     }
+
+
+
     @GetMapping(value = "/signin")
     public String signin(Users users) {
         return "signin";
     }
+
+
     @PostMapping("/signin")
     public String addUser(@Valid LoginCredential loginCredential, BindingResult result, Model model) {
         if (result.hasErrors()) {
