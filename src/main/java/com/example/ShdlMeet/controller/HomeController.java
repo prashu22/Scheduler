@@ -44,7 +44,7 @@ public class HomeController {
         //System.out.println(user.getEmail());
         if(user!=null)
             model.addAttribute("users",user);
-        return "index.html";
+        return "calendar.html";
     }
 
 }
