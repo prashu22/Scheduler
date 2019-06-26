@@ -9,6 +9,6 @@ public interface UserInfoRepo extends MongoRepository<Users,String> {
 
     Users findByEmailAndPassword(String email, String password);
 
-    Users findBy_id(ObjectId id);
+    Users findByEmail(String s);
 
 }

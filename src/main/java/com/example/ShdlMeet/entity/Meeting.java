@@ -9,18 +9,18 @@ import java.util.List;
 @Document(collection = "Meeting")
 public class Meeting {
 
-    private Integer hostId;
+    private String hostId;
     private Timing timing;
-    List<ObjectId> members;
+    List<String> members;
 
     @Id
     ObjectId _id;
 
-    public Integer getHostId() {
+    public String  getHostId() {
         return hostId;
     }
 
-    public void setHostId(Integer hostId) {
+    public void setHostId(String hostId) {
         this.hostId = hostId;
     }
 
@@ -32,11 +32,11 @@ public class Meeting {
         this.timing = timing;
     }
 
-    public List<ObjectId> getMembers() {
+    public List<String> getMembers() {
         return members;
     }
 
-    public void setMembers(List<ObjectId> members) {
+    public void setMembers(List<String> members) {
         this.members = members;
     }
 

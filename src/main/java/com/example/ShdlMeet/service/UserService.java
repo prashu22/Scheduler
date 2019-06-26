@@ -30,9 +30,9 @@ public class UserService {
         return userInfo.findByEmailAndPassword(email,password);
     }
 
-    public boolean isAvailable(ObjectId id, Timing curr_timing)
+    public boolean isAvailable(String email, Timing curr_timing)
     {
-        Users users = userInfo.findBy_id(id);
+        Users users = userInfo.findByEmail(email);
         List<ObjectId> meetings=users.getMeetings();
         boolean available=true;
         for(int i=0;i<meetings.size();i++)
@@ -48,10 +48,10 @@ public class UserService {
 
     void updateMeetings(Meeting meeting)
     {
-        List<ObjectId> member=meeting.getMembers();
+        List<String> member=meeting.getMembers();
         for(int i=0;i<member.size();i++)
         {
-            Users user=userInfo.findBy_id(member.get(i));
+            Users user=userInfo.findByEmail(member.get(i));
             user.getMeetings().add(meeting.get_id());
             userInfo.save(user);
         }
