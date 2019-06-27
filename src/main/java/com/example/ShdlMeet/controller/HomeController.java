@@ -36,12 +36,6 @@ public class HomeController {
 
 
 
-    @GetMapping(value = "/signin")
-    public String signin(Users users) {
-        return "signin";
-    }
-
-
     @PostMapping("/signin")
     public String addUser(@Valid LoginCredential loginCredential, BindingResult result, Model model) {
         if (result.hasErrors()) {
