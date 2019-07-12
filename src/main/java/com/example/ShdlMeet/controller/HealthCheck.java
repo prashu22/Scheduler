@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value="/health", method = RequestMethod.GET)
 public class HealthCheck {
 
-
     @GetMapping("/healthCheck")
     public String healthCheck(){
         return "healty";
     }
-
 }

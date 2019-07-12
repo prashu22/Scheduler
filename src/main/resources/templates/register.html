@@ -9,33 +9,41 @@
 <body>
 <div class="container" align="center" >
     <h2>Registration Form</h2>
-    <form class+="form-horizontal" action="#" th:action="@{/register}" th:object="${users}" method="post">
+    <form class="form-horizontal" action="#" th:action="@{/register}" th:object="${users}" method="post">
         <div class="form-group">
-            <label class="control-label col-sm-2" for="name">Name:</label>
+            <label class="control-label col-sm-2" for="name">Name:<font color="red">*</font></label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Enter Name">
+                <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Enter Name" required>
                 <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             </div>
         </div>
 
 
         <div class="form-group">
-            <label class="control-label col-sm-2" for="email">Email:</label>
+            <label class="control-label col-sm-2" for="email">Email:<font color="red">*</font></label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="Enter Email">
+                <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="Enter Email" required>
                 <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-2" for="password">Password:</label>
+            <label class="control-label col-sm-2" for="password">Password:<font color="red">*</font></label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Enter Password">
+                <input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Enter Password" required>
                 <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 
             </div>
 
         </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="phone">Mobile:<font color="red">*</font></label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" th:field="*{phone}" id="phone" pattern="[1-9]{1}[0-9]{9}" placeholder="Enter Phone Number" required>
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="control-label col-sm-2" for="address">Address:</label>
             <div class="col-sm-10">
@@ -43,19 +51,13 @@
             </div>
 
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="phone">Mobile:</label>
-            <div class="col-sm-10">
-                <input type="tel" class="form-control" th:field="*{phone}" id="phone" placeholder="Enter Phone Number">
-            </div>
-        </div>
 
 
 
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10" align="center">
-                <input type="submit" value="Add User">
+                <input type="submit"  value="Add User">
             </div>
         </div>
 
@@ -65,3 +67,35 @@
 </div>
 </body>
 </html>
+
+
+<!--$(document).ready(function(){-->
+
+<!--$("#register").click(function(){-->
+
+<!--var user={-->
+<!--email: $("#email").val(),-->
+<!--password: $("#password").val(),-->
+<!--phone: $("#phone").val(),-->
+<!--address: $("#address").val(),-->
+<!--name: $("#name").val()-->
+<!--};-->
+<!--$.ajax({-->
+<!--url: "/register",-->
+<!--type: 'POST',-->
+<!--data: JSON.stringify(user),-->
+<!--dataType: "json",-->
+<!--contentType: 'application/json',-->
+<!--mimeType: 'application/json',-->
+<!--success: function(data){-->
+<!--alert(data);-->
+<!--load(data);-->
+<!--}-->
+<!--});-->
+<!--window.location.replace("http://localhost:8081/home");-->
+<!--});-->
+<!--});-->
+<!--function load(data)-->
+<!--{-->
+<!--window.localStorage.setItem("user",JSON.stringify(data));-->
+<!--}-->

@@ -34,8 +34,6 @@ public class HomeController {
         return "index.html";
     }
 
-
-
     @PostMapping("/signin")
     public String addUser(@Valid LoginCredential loginCredential, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -44,8 +42,15 @@ public class HomeController {
         Users user=userService.login(loginCredential.getEmail(),loginCredential.getPassword());
         //System.out.println(user.getEmail());
         if(user!=null)
+        {
             model.addAttribute("users",user);
+        }
+
         return "index";
+    }
+    @GetMapping(value = "/home")
+    public String home() {
+        return "home";
     }
 
 }

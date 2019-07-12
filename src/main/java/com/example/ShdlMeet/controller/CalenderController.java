@@ -34,11 +34,6 @@ public class CalenderController {
             return "Error";
         }
     }
-//    @RequestMapping(value = "", method=RequestMethod.POST)
-//    public String dateTrigger(@RequestBody Timing timing, List<Integer> members )
-//    {
-//
-//    }
 
     @RequestMapping(value="/check/{email}",method = RequestMethod.POST)
     @ResponseBody
@@ -52,6 +47,7 @@ public class CalenderController {
     public String add_meeting() {
         return "addmeeting";
     }
+
     @PostMapping(value = "/addmeeting")
     public String addmeeting(Model model) {
         return "index.html";

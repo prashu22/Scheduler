@@ -9,8 +9,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -71,6 +70,34 @@ public class UserService {
             System.out.println(user.getMeetings().size());
             userInfo.save(user);
         }
+    }
+    public List<Meeting> meetings(String email)
+    {
+        List<Meeting> meetings=new ArrayList<>();
+        List<ObjectId> list=userInfo.findByEmail(email).getMeetings();
+        for(int i=0;i<list.size();i++)
+        {
+            meetings.add(meetingRepo.findBy_id(list.get(i)));
+        }
+return meetings;
+    }
+    public List<Integer> getDates(String email,int month,int year)
+    {
+        List<Integer> meetings=new ArrayList<>();
+        List<ObjectId> list=userInfo.findByEmail(email).getMeetings();
+        if(list==null)
+            return meetings;
+        for(int i=0;i<list.size();i++)
+        {
+            Meeting m=meetingRepo.findBy_id(list.get(i));
+            Date d=m.getTiming().getStDate();
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(d);
+            if(calendar.get(calendar.YEAR)==year && calendar.get(calendar.MONTH)==month) {
+                meetings.add(calendar.get(calendar.DATE));
+            }
+        }
+        return meetings;
     }
 
 }

@@ -1,4 +1,3 @@
-<script type="text/javascript">
 var start_time;
 var end_time;
 var list=[];
@@ -8,6 +7,7 @@ function checkStart() {
     {
     if (confirm('Are you sure this will delete all added member')) {
     list.length=0;
+    $("p").empty();
     start_time = $("#stMeeting").val();
     }
     else
@@ -25,6 +25,7 @@ function checkEnd() {
     {
     if (confirm('Are you sure this will delete all added member')) {
     list.length=0;
+    $("p").empty();
     end_time = $("#edMeeting").val();
     }
     else
@@ -39,29 +40,24 @@ function checkEnd() {
 
 $(document).ready(function(){
 
-    var timing={
-        "stDate":start_time,
-        "edDate":end_time
-    };
     $("#add").click(function(){
-    var m=$('#member').val();
-    if (!start_time && !end_time) {
-    alert("Enter Valid Timing");
-    }
-    else if(m=="")
-    {
-        alert("Enter Email");
-    }
-    else{
-    var timing = JSON.stringify({
-            'timing':timing
-        });
 
+        var timing={
+            "stDate":$("#stMeeting").val(),
+            "edDate":$("#edMeeting").val()
+         };
+        var m=$('#member').val();
+        if (!start_time && !end_time) {alert("Enter Valid Timing");}
 
-    $.ajax({
+        else if(m=="")  {alert("Enter Email"); }
+
+        else if(list.includes(m))   {alert("Already included");}
+
+        else{
+        $.ajax({
             url: "/check/"+m,
             type: 'POST',
-            data:  timing,
+            data:  JSON.stringify(timing),
             dataType: "json",
             contentType: 'application/json',
             mimeType: 'application/json',
@@ -76,14 +72,30 @@ $(document).ready(function(){
                 alert("He is not available");
             }
             }
-        });
-    }
+            });
+        }
+        $('#member').val("");
     });
 
     $("#set").click(function(){
+
+        if (!start_time && !end_time) {
+        alert("Enter Valid Timing");
+        }
+        else if(list.length<2)
+        {
+        alert("Enter atleast two member");
+        }
+        else{
+        var timing={
+            "stDate":$("#stMeeting").val(),
+            "edDate":$("#edMeeting").val()
+        };
+
+
         var Meeting = JSON.stringify({
-            'hostId':"Prashu1996@gmail.com",
-            'list' : list,
+            'hostId': localStorage.getItem("email"),
+            'members' : list,
             'timing':timing
         });
         $.ajax({
@@ -95,10 +107,10 @@ $(document).ready(function(){
             mimeType: 'application/json',
             success: function(){
                 alert("Successfully Set Meeting");
+                
             }
         });
+        }
         });
 
 });
-
-</script>
