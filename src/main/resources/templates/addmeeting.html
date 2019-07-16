@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Set Meeting</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
 var start_time;
@@ -112,8 +113,8 @@ $(document).ready(function(){
 
 </script>
 </head>
-<body>
-<div align="center">
+<body class="jumbotron">
+<div align="center" >
 <h1> Set Meeting</h1>
 Start Meeting:
 <input type="datetime-local" id="stMeeting" onfocusout="checkStart()" >
@@ -122,11 +123,11 @@ End Meeting  :
 <input type="datetime-local" id="edMeeting" onfocusout="checkEnd()">
 <br><br><br>
 
-<input type="text" id="member" placeholder="member">
-<button id="add">Add Member</button>
+<input type="text" id="member" placeholder="Member">
+<button id="add" class="btn btn-success">Add Member</button>
 <P>Members</p>
 <br><br>
-<button id="set">Set Meeting</button>
+<button id="set" class="btn btn-success">Set Meeting</button>
 </div>
 </body>
 </html>

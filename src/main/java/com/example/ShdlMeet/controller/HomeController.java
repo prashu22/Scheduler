@@ -31,6 +31,7 @@ public class HomeController {
         }
         userService.register(user);
         model.addAttribute("users",user);
+        model.addAttribute("name",user.getName());
         return "index.html";
     }
 
@@ -44,7 +45,11 @@ public class HomeController {
         Users user=userService.login(loginCredential.getEmail(),loginCredential.getPassword());
         //System.out.println(user.getEmail());
         if(user!=null)
+        {
             model.addAttribute("users",user);
+            model.addAttribute("name",user.getName());
+        }
+
         return "index";
     }
 

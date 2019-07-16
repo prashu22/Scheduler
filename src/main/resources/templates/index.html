@@ -3,7 +3,7 @@
 <head>
     <meta charset="ISO-8859-1">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,height=devie-height,initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -11,7 +11,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=email], input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -129,32 +129,32 @@ span.psw {
   }
 }
 </style>
+
 </head>
 <body class="jumbotron">
-<div class="jumbotron">
-    <h2 align="center"> MEETING SETUP </h2>
+<div >
+
+
     <div align="center" th:switch="${users}">
         <div th:case="null">
+            <h2 align="center"> MEETING SETUP </h2>
             <p class="center">
-                <button style="height:40px;width:100px" onclick="window.location.href = '/register';">Register</button>
+                <button style="height:60px;width:120px" onclick="window.location.href = '/register';">Register</button>
                 <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
             </p>
         </div>
         <div id="id01" class="modal">
 
-            <form class="LoginCredential" action="/signin" method="post">
-                <div class="imgcontainer">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <img src="desktop/wheelseye.png" alt="Avatar" class="avatar">
-                </div>
+            <form article class="LoginCredential modal-content animate" action="/signin" method="post">
+
 
                 <div class="container">
-                    <label for="email"><b>Email:</b></label>
+                    <label for="email"><b>Email<font color="red">*</font></b></label>
                     <input type="email"  id="email" placeholder="Enter email" name="email" autofocus="autofocus" required/>
 
-                    <label for="password"><b>Password:</b></label></label>
+                    <label for="password"><b>Password<font color="red">*</font></b></label></label>
                         <input type="password" id="password" placeholder="Enter password" name="password" autofocus="autofocus" required/>
-                    <button type="submit" class="btn btn-default" value="Login"/>Login</button>
+                    <button type="submit" class="btn btn-success" value="Login"/>Login</button>
 
                 </div>
 
@@ -176,67 +176,10 @@ window.onclick = function(event) {
 }
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div th:case="*">
+
             <h2>Home Page</h2>
-            <table class="table table-hover">
+            <table article class="table table-hover table table-bordered">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -247,6 +190,7 @@ window.onclick = function(event) {
                 </thead>
                 <tbody>
                 <tr th:each="user : ${users}">
+
                     <td th:text="${user.name}"></td>
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.phone}"></td>
@@ -254,11 +198,45 @@ window.onclick = function(event) {
                 </tr>
                 </tbody>
             </table>
+            <div align="center" >
+                <div align="center" class="card">
+                    <h3>Meeting List</h3>
+                    <table align="center" class="table table-bordered table-responsive-sm" id="meet">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Starting Time</th>
+                            <th>End Time</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="meet-body">
+                        </tbody>
+                    </table>
+<!--<script>-->
+<!--funtion meet("${user.name}"){-->
+<!--    for (let i = 0; i < ; i++) {-->
+<!--        // creates a table row-->
+<!--        let row = document.createElement("tr");-->
+
+<!--        //creating individual cells, filing them up with data.-->
+<!--        for (let j = 0; j < 3; j++) {-->
+<!--            if (i==0&&j=0) {-->
+<!--                cell = document.createElement("td");-->
+<!--                cellText = document.createTextNode("${user.name}");-->
+<!--                cell.appendChild(cellText);-->
+<!--                row.appendChild(cell);-->
+<!--            }-->
+<!--            {-->
+
+<!--            }-->
+<!--            }-->
+</script>
             <div>
                 <button  style="margin-left:auto;margin-right:auto;display:block;"
                          onclick=" window.location.href = '/addmeeting';" > Set Meeting </button>
             </div>
-            <div align="center" class="container col-sm-4 col-md-7 col-lg-4 mt-5">
+            <div align="center" >
                 <div align="center" class="card">
                     <h3 class="card-header" id="monthAndYear"></h3>
                     <table align="right" class="table table-bordered table-responsive-sm" id="calendar">
@@ -351,6 +329,7 @@ window.onclick = function(event) {
             </div>
 
             <script>
+
     today = new Date();
 currentMonth = today.getMonth();
 currentYear = today.getFullYear();
@@ -419,7 +398,7 @@ function showCalendar(month, year) {
                 cellText = document.createTextNode(date);
 
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                    cell.classList.add("bg-info");
+                    cell.classList.add("bg-success");
                 } // color today's date
                 cell.appendChild(cellText);
                 row.appendChild(cell);
@@ -435,7 +414,7 @@ function showCalendar(month, year) {
 if (table != null) {
     for (var i = 0; i < table.rows.length; i++) {
         for (var j = 0; j < table.rows[i].cells.length; j++)
-        table.rows[i].cells[j].onclick = function () {
+        table.rows[i].cells[j].onclick =function () {
             tableText(this);
         };
     }
@@ -454,11 +433,21 @@ function tableText(tableCell) {
 function daysInMonth(iMonth, iYear) {
     return 32 - new Date(iYear, iMonth, 32).getDate();
 }
+
+
 </script>
 
+                  <script th:inline="javascript">
+                  /*<![CDATA[*/
 
+                      var message = /*[[${users.email}]]*/ 'default';
+                      alert(message);
 
+                  /*]]>*/
+                  </script>
         </div>
     </div>
+            <script
+    </script>
 </body>
 </html>
